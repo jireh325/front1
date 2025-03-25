@@ -18,31 +18,31 @@ export const useUserRightStore = defineStore('userRight', {
   actions: {
     async fetchUserRights() {
       const query = `{ getAllUserRights { id idUser idProject admin } }`;
-      const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', { query });
+      const response = await axios.post('https://back1-production-237e.up.railway.app/graphql', { query });
       this.userRights = response.data.data.getAllUserRights;
     },
 
     async fetchUserRight(id: string) {
       const query = `{ getOneUserRight(id: "${id}") { id idUser idProject admin } }`;
-      const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', { query });
+      const response = await axios.post('https://back1-production-237e.up.railway.app/graphql', { query });
       this.selectedUserRight = response.data.data.getOneUserRight;
     },
 
     async fetchUserRightsByUser(idUser: string) {
       const query = `{ getUserRightsByUser(idUser: "${idUser}") { id idUser idProject admin } }`;
-      const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', { query });
+      const response = await axios.post('https://back1-production-237e.up.railway.app/graphql', { query });
       this.userRights = response.data.data.getUserRightsByUser;
     },
 
     async fetchUserRightsByProject(idProject: string) {
       const query = `{ getUserRightsByProject(idProject: "${idProject}") { id idUser idProject admin } }`;
-      const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', { query });
+      const response = await axios.post('https://back1-production-237e.up.railway.app/graphql', { query });
       this.userRights = response.data.data.getUserRightsByProject;
     },
 
     async fetchUserRightByUserAndProject(idUser: string, idProject: string) {
       const query = `{ getUserRightByUserAndProject(idUser: "${idUser}", idProject: "${idProject}") { id idUser idProject admin } }`;
-      const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', { query });
+      const response = await axios.post('https://back1-production-237e.up.railway.app/graphql', { query });
       this.selectedUserRight = response.data.data.getUserRightByUserAndProject;
     },
 
@@ -54,7 +54,7 @@ export const useUserRightStore = defineStore('userRight', {
           }
         }
       `;
-      const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', { query: mutation });
+      const response = await axios.post('https://back1-production-237e.up.railway.app/graphql', { query: mutation });
       this.userRights.push(response.data.data.createUserRight);
     },
 
@@ -66,7 +66,7 @@ export const useUserRightStore = defineStore('userRight', {
           }
         }
       `;
-      const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', { query: mutation });
+      const response = await axios.post('https://back1-production-237e.up.railway.app/graphql', { query: mutation });
       const index = this.userRights.findIndex(u => u.id === userRight.id);
       if (index !== -1) {
         this.userRights[index] = response.data.data.updateUserRight;
@@ -79,7 +79,7 @@ export const useUserRightStore = defineStore('userRight', {
           deleteUserRight(id: "${id}")
         }
       `;
-      await axios.post('http://back1-production-237e.up.railway.app/graphql', { query: mutation });
+      await axios.post('https://back1-production-237e.up.railway.app/graphql', { query: mutation });
       this.userRights = this.userRights.filter(u => u.id !== id);
     },
   },

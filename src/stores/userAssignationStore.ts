@@ -17,31 +17,31 @@ export const useUserAssignationStore = defineStore('userAssignation', {
   actions: {
     async fetchUserAssignations() {
       const query = `{ getAllUserAssignations { id idTodo idUser } }`;
-      const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', { query });
+      const response = await axios.post('https://back1-production-237e.up.railway.app/graphql', { query });
       this.userAssignations = response.data.data.getAllUserAssignations;
     },
 
     async fetchUserAssignation(id: string) {
       const query = `{ getOneUserAssignation(id: "${id}") { id idTodo idUser } }`;
-      const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', { query });
+      const response = await axios.post('https://back1-production-237e.up.railway.app/graphql', { query });
       this.selectedUserAssignation = response.data.data.getOneUserAssignation;
     },
 
     async fetchUserAssignationsByTodo(idTodo: string) {
       const query = `{ getUserAssignationsByTodo(idTodo: "${idTodo}") { id idTodo idUser } }`;
-      const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', { query });
+      const response = await axios.post('https://back1-production-237e.up.railway.app/graphql', { query });
       this.userAssignations = response.data.data.getUserAssignationsByTodo;
     },
 
     async fetchUserAssignationsByUser(idUser: string) {
       const query = `{ getUserAssignationsByUser(idUser: "${idUser}") { id idTodo idUser } }`;
-      const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', { query });
+      const response = await axios.post('https://back1-production-237e.up.railway.app/graphql', { query });
       this.userAssignations = response.data.data.getUserAssignationsByUser;
     },
 
     async fetchUserAssignationByTodoAndUser(idTodo: string, idUser: string) {
       const query = `{ getUserAssignationByTodoAndUser(idTodo: "${idTodo}", idUser: "${idUser}") { id idTodo idUser } }`;
-      const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', { query });
+      const response = await axios.post('https://back1-production-237e.up.railway.app/graphql', { query });
       this.selectedUserAssignation = response.data.data.getUserAssignationByTodoAndUser;
     },
 
@@ -53,7 +53,7 @@ export const useUserAssignationStore = defineStore('userAssignation', {
           }
         }
       `;
-      const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', { query: mutation });
+      const response = await axios.post('https://back1-production-237e.up.railway.app/graphql', { query: mutation });
       this.userAssignations.push(response.data.data.createUserAssignation);
     },
 
@@ -65,7 +65,7 @@ export const useUserAssignationStore = defineStore('userAssignation', {
           }
         }
       `;
-      const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', { query: mutation });
+      const response = await axios.post('https://back1-production-237e.up.railway.app/graphql', { query: mutation });
       const index = this.userAssignations.findIndex(u => u.id === userAssignation.id);
       if (index !== -1) {
         this.userAssignations[index] = response.data.data.updateUserAssignation;
@@ -78,7 +78,7 @@ export const useUserAssignationStore = defineStore('userAssignation', {
           deleteUserAssignation(id: "${id}")
         }
       `;
-      await axios.post('http://back1-production-237e.up.railway.app/graphql', { query: mutation });
+      await axios.post('https://back1-production-237e.up.railway.app/graphql', { query: mutation });
       this.userAssignations = this.userAssignations.filter(u => u.id !== id);
     },
   },

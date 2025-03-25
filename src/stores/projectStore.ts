@@ -31,7 +31,7 @@ export const useProjectStore = defineStore('project', {
         }
       `;
       try {
-        const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', { 
+        const response = await axios.post('https://back1-production-237e.up.railway.app/graphql', { 
           query,
           variables: { idCreateur: authStore.userConnected?.id }
         });
@@ -55,7 +55,7 @@ export const useProjectStore = defineStore('project', {
         }
       `;
       try {
-        const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', {
+        const response = await axios.post('https://back1-production-237e.up.railway.app/graphql', {
           query,
           variables: { id },
         });
@@ -78,7 +78,7 @@ export const useProjectStore = defineStore('project', {
         }
       `;
       try {
-        const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', {
+        const response = await axios.post('https://back1-production-237e.up.railway.app/graphql', {
           query: mutation,
           variables: {
             name: project.name,
@@ -105,7 +105,7 @@ export const useProjectStore = defineStore('project', {
         }
       `;
       try {
-        const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', {
+        const response = await axios.post('https://back1-production-237e.up.railway.app/graphql', {
           query: mutation,
           variables: {
             id: project.id,
@@ -130,7 +130,7 @@ export const useProjectStore = defineStore('project', {
         }
       `;
       try {
-        await axios.post('http://back1-production-237e.up.railway.app/graphql', {
+        await axios.post('https://back1-production-237e.up.railway.app/graphql', {
           query: mutation,
           variables: { id },
         });
