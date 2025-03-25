@@ -20,26 +20,26 @@ export const useHistoriqueStore = defineStore('historique', {
 
     async fetchHistoriques() {
       const query = `{ getAllHistoriques { id idUser idTodo status createdAt } }`;
-      const response = await axios.post('http://localhost:8080/graphql', { query });
+      const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', { query });
       this.historiques = response.data.data.getAllHistoriques;
     },
 
     async fetchHistorique(id: string) {
       const query = `{ getOneHistorique(id: "${id}") { id idUser idTodo status createdAt } }`;
-      const response = await axios.post('http://localhost:8080/graphql', { query });
+      const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', { query });
       this.selectedHistorique = response.data.data.getOneHistorique;
     },
 
     async fetchHistoriquesByUser(idUser: string | null) {
       const query = `{ getHistoriqueByIdUser(idUser: "${idUser}") { id idUser idTodo status createdAt } }`;
       
-      const response = await axios.post('http://localhost:8080/graphql', { query });
+      const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', { query });
       this.historiques = response.data.data.getHistoriqueByIdUser;
     },
 
     async fetchHistoriquesByTodo(idTodo: string) {
       const query = `{ getHistoriqueByIdTodo(id: "${idTodo}") { id idUser idTodo status createdAt } }`;
-      const response = await axios.post('http://localhost:8080/graphql', { query });
+      const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', { query });
       this.historiques = response.data.data.getHistoriqueByIdTodo;
     },
 
@@ -51,7 +51,7 @@ export const useHistoriqueStore = defineStore('historique', {
           }
         }
       `;
-      const response = await axios.post('http://localhost:8080/graphql', { query: mutation });
+      const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', { query: mutation });
       this.historiques.push(response.data.data.createHistorique);
     },
 
@@ -63,7 +63,7 @@ export const useHistoriqueStore = defineStore('historique', {
           }
         }
       `;
-      const response = await axios.post('http://localhost:8080/graphql', { query: mutation });
+      const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', { query: mutation });
       const index = this.historiques.findIndex(h => h.id === id);
       if (index !== -1) {
         this.historiques[index] = response.data.data.updateHistorique;
@@ -76,7 +76,7 @@ export const useHistoriqueStore = defineStore('historique', {
           deleteHistorique(id: "${id}")
         }
       `;
-      await axios.post('http://localhost:8080/graphql', { query: mutation });
+      await axios.post('http://back1-production-237e.up.railway.app/graphql', { query: mutation });
       this.historiques = this.historiques.filter(historique => historique.id !== id);
     },
   },

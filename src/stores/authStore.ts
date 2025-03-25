@@ -52,7 +52,7 @@ export const useAuthStore = defineStore('auth', {
     async signup(userDto: UserDto): Promise<boolean> {
       this.error = null;
       try {
-        const response = await axios.post<UserDto>('http://localhost:8080/auth/signup', userDto);
+        const response = await axios.post<UserDto>('http://back1-production-237e.up.railway.app/auth/signup', userDto);
         return true;
       } catch (error: any) {
         this.error = error.response?.data?.message || "Erreur lors de l’inscription";
@@ -63,7 +63,7 @@ export const useAuthStore = defineStore('auth', {
     async login(loginDto: LoginDto): Promise<boolean> {
       this.error = null;
       try {
-        const response = await axios.post<LoginResponse>('http://localhost:8080/auth/login', loginDto);
+        const response = await axios.post<LoginResponse>('http://back1-production-237e.up.railway.app/auth/login', loginDto);
         if (!response.data.token || !response.data.user) {
           throw new Error('Réponse de connexion invalide');
         }

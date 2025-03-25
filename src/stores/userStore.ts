@@ -20,13 +20,13 @@ export const useUserStore = defineStore('user', {
 
     async fetchUsers() {
       const query = `{ getAllUsers { id firstName lastName pass email } }`;
-      const response = await axios.post('/graphql', { query });
+      const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', { query });
       this.users = response.data.data.getAllUsers;
     },
 
     async fetchUser(id: string) {
       const query = `{ getOneUser(id: "${id}") { id firstName lastName pass email } }`;
-      const response = await axios.post('/graphql', { query });
+      const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', { query });
       this.selectedUser = response.data.data.getOneUser;
     },
 
@@ -38,7 +38,7 @@ export const useUserStore = defineStore('user', {
           }
         }
       `;
-      const response = await axios.post('/graphql', { query: mutation });
+      const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', { query: mutation });
       this.users.push(response.data.data.createUser);
     },
 
@@ -50,7 +50,7 @@ export const useUserStore = defineStore('user', {
           }
         }
       `;
-      const response = await axios.post('/graphql', { query: mutation });
+      const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', { query: mutation });
       const index = this.users.findIndex(u => u.id === user.id);
       if (index !== -1) {
         this.users[index] = response.data.data.updateUser;
@@ -63,7 +63,7 @@ export const useUserStore = defineStore('user', {
           deleteUser(id: "${id}")
         }
       `;
-      await axios.post('/graphql', { query: mutation });
+      await axios.post('http://back1-production-237e.up.railway.app/graphql', { query: mutation });
       this.users = this.users.filter(user => user.id !== id);
     },
 

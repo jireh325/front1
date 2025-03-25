@@ -45,7 +45,7 @@ export const useTodoStore = defineStore('todo', {
         }
       `;
       try {
-        const response = await axios.post('http://localhost:8080/graphql', {
+        const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', {
           query,
           variables: { idProject },
         });
@@ -82,7 +82,7 @@ export const useTodoStore = defineStore('todo', {
         }
       `;
       try {
-        const response = await axios.post('http://localhost:8080/graphql', {
+        const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', {
           query,
           variables: { id },
         });
@@ -110,7 +110,7 @@ export const useTodoStore = defineStore('todo', {
         }
       `;
       try {
-        const response = await axios.post('http://localhost:8080/graphql', {
+        const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', {
           query: mutation,
           variables: {
             title: todo.title,
@@ -146,7 +146,7 @@ export const useTodoStore = defineStore('todo', {
       `;
       
       try {
-        const response = await axios.post('http://localhost:8080/graphql', {
+        const response = await axios.post('http://back1-production-237e.up.railway.app/graphql', {
           query: mutation,
           variables: {
             id: todo.id,
@@ -180,7 +180,7 @@ export const useTodoStore = defineStore('todo', {
         }
       `;
       try {
-        await axios.post('http://localhost:8080/graphql', {
+        await axios.post('http://back1-production-237e.up.railway.app/graphql', {
           query: mutation,
           variables: { id },
         });
